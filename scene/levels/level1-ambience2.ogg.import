@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/level1-ambience2.ogg-88b34ed876bd52255376b40c60c1741a.oggstr"
+
+[deps]
+
+source_file="res://scene/levels/level1-ambience2.ogg"
+dest_files=[ "res://.import/level1-ambience2.ogg-88b34ed876bd52255376b40c60c1741a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "MainMenu",
 "language": "GDScript",
-"path": "res://scene/MainMenu/Menu.gd"
+"path": "res://scene/main_menu/Menu.gd"
 } ]
 _global_script_class_icons={
 "MainMenu": ""
@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="asteroid_remake"
-run/main_scene="res://scene/Levels/SceneHandler.tscn"
+run/main_scene="res://scene/levels/SceneHandler.tscn"
 config/icon="res://icon.png"
 
 [autoload]

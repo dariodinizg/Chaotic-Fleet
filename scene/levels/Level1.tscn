@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scene/asteroid/large/AsteroidLarge.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/asteroid/medium/AsteroidMedium.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/asteroid/small/AsteroidSmall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/spaceship/spaceship.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/main_menu/gfx/Background/space.jpeg" type="Texture" id=5]
+[ext_resource path="res://scene/levels/Level1.gd" type="Script" id=6]
+[ext_resource path="res://scene/levels/level1-ambience.ogg" type="AudioStream" id=7]
+
+[node name="Level1" type="Node"]
+script = ExtResource( 6 )
+
+[node name="Space" type="Sprite" parent="."]
+position = Vector2( 499, 316 )
+texture = ExtResource( 5 )
+
+[node name="Spaceship" parent="." instance=ExtResource( 4 )]
+position = Vector2( 351.489, 270.125 )
+
+[node name="AsteroidMedium" parent="." instance=ExtResource( 2 )]
+position = Vector2( 541, 274 )
+
+[node name="AsteroidSmall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 456, 195 )
+
+[node name="AsteroidLarge" parent="." instance=ExtResource( 1 )]
+position = Vector2( 252, 414 )
+number_of_pieces = 4
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
