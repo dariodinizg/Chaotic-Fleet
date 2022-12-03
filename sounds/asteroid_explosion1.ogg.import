@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/asteroid_explosion1.ogg-5ea6e803895a2f4753e56179e0cc57d2.oggstr"
+
+[deps]
+
+source_file="res://sounds/asteroid_explosion1.ogg"
+dest_files=[ "res://.import/asteroid_explosion1.ogg-5ea6e803895a2f4753e56179e0cc57d2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

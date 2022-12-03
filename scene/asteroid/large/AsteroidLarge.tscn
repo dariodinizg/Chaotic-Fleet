@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scene/asteroid/large/AsteroidLarge.gd" type="Script" id=1]
+[ext_resource path="res://sprites/alarge.png" type="Texture" id=2]
+[ext_resource path="res://sounds/explosion4.ogg" type="AudioStream" id=3]
+
+[node name="AsteroidLarge" type="RigidBody2D" groups=["asteroid"]]
+gravity_scale = 0.0
+script = ExtResource( 1 )
+size = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.416016, 0.419922 )
+texture = ExtResource( 2 )
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+position = Vector2( 9.90483, 0.0272366 )
+scale = Vector2( 1.04048, 1.05445 )
+polygon = PoolVector2Array( -3, -82, 48, -58, 53, -45, 67, -37, 78, 24, 59, 57, 40, 74, 20, 74, 5, 80, -41, 81, -93, 57, -98, 9, -91, -19, -75, -38, -68, -53, -45, -56, -22, -73 )
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )

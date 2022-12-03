@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/respawn1.ogg-59080a188666109b7267831ecc652f98.oggstr"
+
+[deps]
+
+source_file="res://sounds/respawn1.ogg"
+dest_files=[ "res://.import/respawn1.ogg-59080a188666109b7267831ecc652f98.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

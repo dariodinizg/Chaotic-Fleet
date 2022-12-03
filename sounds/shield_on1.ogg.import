@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shield_on1.ogg-d26cbedfde543d0770e92b7b885c3e78.oggstr"
+
+[deps]
+
+source_file="res://sounds/shield_on1.ogg"
+dest_files=[ "res://.import/shield_on1.ogg-d26cbedfde543d0770e92b7b885c3e78.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

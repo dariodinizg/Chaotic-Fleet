@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/disruptor1.ogg-1cd0e55017dd8fcb0721754aa5036308.oggstr"
+
+[deps]
+
+source_file="res://sounds/disruptor1.ogg"
+dest_files=[ "res://.import/disruptor1.ogg-1cd0e55017dd8fcb0721754aa5036308.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

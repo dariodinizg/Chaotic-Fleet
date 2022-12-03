@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/warp0.mp3-31f245b3403f9eb598e2778c3f6381f9.mp3str"
+
+[deps]
+
+source_file="res://sounds/warp0.mp3"
+dest_files=[ "res://.import/warp0.mp3-31f245b3403f9eb598e2778c3f6381f9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
