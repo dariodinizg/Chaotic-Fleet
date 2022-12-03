@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "MainMenu",
 "language": "GDScript",
 "path": "res://scene/main_menu/Menu.gd"
+}, {
+"base": "RigidBody2D",
+"class": "PLAYER",
+"language": "GDScript",
+"path": "res://scene/spaceship/spaceship.gd"
 } ]
 _global_script_class_icons={
-"MainMenu": ""
+"MainMenu": "",
+"PLAYER": ""
 }
 
 [application]

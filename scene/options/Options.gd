@@ -20,12 +20,12 @@ var is_sfx_vol_changed = false
 signal OPTIONS_back_btn_pressed
 
 func _ready():
-	Handler = connect_itself(HANDLER_NAME)
 	[MenuMusicVolBar, SfxVolBar, GameVolBar] = _initialize_components()
 	_load_startup_settings()
+	Handler = _connect_itself(HANDLER_NAME)
 
 
-func connect_itself(handler_name):
+func _connect_itself(handler_name):
 	# Searches the tree for the handler node name and connects its signals.
 	# Returns its handler node.
 	

@@ -1,9 +1,13 @@
 extends "res://scene/CustomRigidBody2D.gd"
 
+class_name PLAYER
+
+signal player_exploded
+
 export(float) var engine_thrust = 100
 export(float) var spin_thrust = 3
-var pre_bullet = preload("res://scene/bullet/bullet.tscn")
 
+var pre_bullet = preload("res://scene/bullet/bullet.tscn")
 var velocity = Vector2()
 var rotation_direction = 0
 
@@ -43,8 +47,8 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 func check_collision(body):
 	if body.is_in_group("asteroid"):
 		print("collided")
-#		queue_free()
 		get_tree().quit()
+		emit_signal("player_exploded")
 
 
 func _on_Area2D_body_entered(body):

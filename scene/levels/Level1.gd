@@ -1,14 +1,16 @@
 extends Node
 
 
-# Create a function to load the configuration file and check for relevant setup
-
+var GameOverScene = preload("res://scene/game_over/game_over.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Music.play()
+	_connect_players_signals()
 
+func _connect_players_signals():
+	$Spaceship.connect("player_exploded", self, "on_player_exploded")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func on_player_exploded():
+	var popup = GameOverScene.instance()
+	add_child(popup)
