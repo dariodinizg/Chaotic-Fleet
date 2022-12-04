@@ -38,13 +38,12 @@ func _explode():
 		var lesser_asteroid = load(lesser_asteroid_type)
 	#		
 		var explosion_speed = explosion_speeds[randi() % (explode_force-1)]
-		print(explosion_speed)
 		for i in range(0,number_of_pieces):
 			var offset_dir = PI * 2 / number_of_pieces * i
 			var asteroid = lesser_asteroid.instance()
 			asteroid.position = position + radius.rotated(offset_dir)
 			asteroid.linear_velocity = linear_velocity + Vector2(explosion_speed,0).rotated(offset_dir)
-			get_parent().add_child(asteroid)
+			get_parent().call_deferred("add_child", asteroid)
 	sleeping = true # prevents the object from interact while not free
 	
 func _on_explosionPlayer_finished():

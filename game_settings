@@ -1,0 +1,11 @@
+{
+"game": {
+"bgMusic": 6.5,
+"sfxVol": -14
+},
+"menu": {
+"currentSongPosition": 3.93578,
+"is_musicOn": 1,
+"musicVol": -3.5
+}
+}

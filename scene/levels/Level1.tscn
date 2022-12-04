@@ -17,6 +17,7 @@ texture = ExtResource( 5 )
 
 [node name="Spaceship" parent="." instance=ExtResource( 4 )]
 position = Vector2( 351.489, 270.125 )
+rotation = 2.09439
 
 [node name="AsteroidMedium" parent="." instance=ExtResource( 2 )]
 position = Vector2( 541, 274 )

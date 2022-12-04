@@ -18,7 +18,7 @@ func _ready():
 	Handler = connect_itself(HANDLER_NAME)
 	$CanvaMenu/music.volume_db = game_settings.menu.musicVol
 	if game_settings.menu.is_musicOn:
-		if Handler.is_game_just_booted and game_settings.menu.is_musicOn:
+		if Handler.is_game_booting:
 			$CanvaMenu/music.play()
 		else:
 			$CanvaMenu/music.play(game_settings.menu.currentSongPosition)
@@ -30,7 +30,6 @@ func _ready():
 
 func disconnect_itself():
 	game_settings.menu.currentSongPosition = $CanvaMenu/music.get_playback_position()
-	GameHandler.saveJSONConfig()
 
 
 func connect_itself(handler_name):
@@ -51,21 +50,22 @@ func _on_solo_game_btn_pressed():
 	emit_signal("solo_game_btn_pressed")
 
 func _on_exit_btn_pressed():
-	GameHandler.saveJSONConfig()
+	GameHandler.saveConfig()
 	emit_signal("game_exit_btn_pressed")
 	
 func _on_options_btn_pressed():
 	emit_signal("options_btn_pressed")
 	
 func _on_muteBtn_pressed():
+	print("just booted:",Handler.is_game_booting)
 	if game_settings.menu.is_musicOn:
-		currentSongPosition = $CanvaMenu/music.get_playback_position()
-		$CanvaMenu/music.stop()
+		game_settings.menu.currentSongPosition = $CanvaMenu/music.get_playback_position()
 		game_settings.menu.is_musicOn = 0
+		$CanvaMenu/music.stop()
 	else:
-		$CanvaMenu/music.play(currentSongPosition)
+		$CanvaMenu/music.play()
 		game_settings.menu.is_musicOn = 1
-		
+
 
 
 

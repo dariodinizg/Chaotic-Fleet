@@ -1,3 +1,5 @@
+class_name OptionsScene
+
 extends Control
 
 # Name of the node that receives this one.
@@ -20,7 +22,8 @@ var is_sfx_vol_changed = false
 signal OPTIONS_back_btn_pressed
 
 func _ready():
-	[MenuMusicVolBar, SfxVolBar, GameVolBar] = _initialize_components()
+#	[MenuMusicVolBar, SfxVolBar, GameVolBar] = _initialize_components()
+	_initialize_components()
 	_load_startup_settings()
 	Handler = _connect_itself(HANDLER_NAME)
 
@@ -34,59 +37,55 @@ func _connect_itself(handler_name):
 	self.connect("OPTIONS_back_btn_pressed", handler_node, "on_OptionsScene_back_btn_pressed")
 	return handler_node
 
+func _initialize_components():
+	MenuMusicVolBar = $MarginContainer/VBoxContainer/MenuMusicSlider/MenuMusicVolSlider
+	SfxVolBar = $MarginContainer/VBoxContainer/SoundEffects/SFXVolSlider
+	SfxLoopTimer = $MarginContainer/VBoxContainer/SoundEffects/SfxLoopTimer
+	GameVolBar = $MarginContainer/VBoxContainer/GameMusic/GameMusicVolSlider
+#	return [MenuMusicVolBar, SfxVolBar, GameVolBar]
+
+func _load_startup_settings():
+	current_song_position = game_settings.menu.currentSongPosition
+	if game_settings.menu.is_musicOn == 1:
+		$MenuMusic.volume_db = game_settings.menu.musicVol
+		$MenuMusic.play(current_song_position)
+	MenuMusicVolBar.value = game_settings.menu.musicVol
+	SfxVolBar.value = game_settings.game.sfxVol
+	GameVolBar.value = game_settings.game.bgMusic
+		
+
 func disconnect_itself():
 	game_settings.menu.currentSongPosition = $MenuMusic.get_playback_position()
-	GameHandler.saveJSONConfig()
+	GameHandler.saveConfig()
 
 
 func _on_back_btn_pressed():
 	disconnect_itself()
 	emit_signal("OPTIONS_back_btn_pressed")
 
+
 func _on_popup_no_btn_pressed():
 	emit_signal("OPTIONS_back_btn_pressed")
 
 
-func _load_startup_settings():
-	current_song_position = game_settings.menu.currentSongPosition
-	MenuMusicVolBar.value = game_settings.menu.musicVol
-	SfxVolBar.value = game_settings.game.sfxVol
-	GameVolBar.value = game_settings.game.bgMusic
-	if game_settings.menu.is_musicOn == 1:
-		$MenuMusic.volume_db = game_settings.menu.musicVol
-		$MenuMusic.play(current_song_position)
-
-
-func _initialize_components():
-	MenuMusicVolBar = $MarginContainer/VBoxContainer/MenuMusicSlider/MenuMusicVolSlider
-	SfxVolBar = $MarginContainer/VBoxContainer/SoundEffects/SFXVolSlider
-	SfxLoopTimer = $MarginContainer/VBoxContainer/SoundEffects/SfxLoopTimer
-	GameVolBar = $MarginContainer/VBoxContainer/GameMusic/GameMusicVolSlider
-	return [MenuMusicVolBar, SfxVolBar, GameVolBar]
-
-
 func _on_MenuMusicVolSlider_value_changed(value):
-	if is_game_music_vol_changed:
-		if game_settings.menu.is_musicOn == 1:
-#			print("até aqui foi")
-			if MenuMusicVolBar.value > -35.0:
-				game_settings.menu.is_musicOn = 1
-				$MenuMusic.volume_db = MenuMusicVolBar.value
-			else:
-				game_settings.menu.is_musicOn = 0
-				$MenuMusic.stop()
-#			else:
-#				current_song_position = $MenuMusic.get_playback_position()
-#				$MenuMusic.stop()
-#
+#	if is_game_music_vol_changed:
+	if MenuMusicVolBar.value > -20.0:
+		$MenuMusic.stream_paused = false
+		game_settings.menu.is_musicOn = 1
+		$MenuMusic.volume_db = MenuMusicVolBar.value
+	else:
+		game_settings.menu.is_musicOn = 0
+		$MenuMusic.stream_paused = true
+
 
 func _on_MenuMusicVolSlider_drag_started():
 	if game_settings.menu.is_musicOn == 0:
-		game_settings.menu.is_musicOn = 1
-		$MenuMusic.play(current_song_position)
+		 game_settings.menu.is_musicOn = 1
+	if $MenuMusic.playing == false:
+		$MenuMusic.playing = true
 	else:
-		is_game_music_vol_changed = true
-		
+		$MenuMusic.volume_db = MenuMusicVolBar.value
 
 
 func _on_MenuMusicVolSlider_drag_ended(value_changed):
@@ -107,6 +106,7 @@ func _on_SFXVolSlider_drag_started():
 	SfxLoopTimer.wait_time = 1
 	SfxLoopTimer.start()
 
+
 func _on_SFXVolSlider_drag_ended(value_changed):
 	game_settings.game.sfxVol = SfxVolBar.value
 	SfxLoopTimer.stop()
@@ -120,14 +120,12 @@ func _on_SfxLoopTimer_timeout():
 
 func _on_GameMusicVolSlider_value_changed(value):
 	if GameVolBar.value >= -18:
-		if is_game_music_vol_changed:
-			$GameMusic.volume_db = GameVolBar.value - 4.0
+		$GameMusic.volume_db = GameVolBar.value - 4.0
 	else:
 		$GameMusic.stop()
 
 
 func _on_GameMusicVolSlider_drag_started():
-	is_game_music_vol_changed = true
 	$MenuMusic.stream_paused = true
 	$GameMusic.play()
 
