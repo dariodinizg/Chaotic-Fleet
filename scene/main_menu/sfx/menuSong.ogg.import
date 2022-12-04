@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/menuSong.ogg-27d85786a60332760ccc186a7630d9c4.oggstr"
+
+[deps]
+
+source_file="res://scene/main_menu/sfx/menuSong.ogg"
+dest_files=[ "res://.import/menuSong.ogg-27d85786a60332760ccc186a7630d9c4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

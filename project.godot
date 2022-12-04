@@ -9,19 +9,43 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Popup",
+"class": "GameOverScene",
+"language": "GDScript",
+"path": "res://scene/game_over/game_over.gd"
+}, {
 "base": "Control",
 "class": "MainMenu",
 "language": "GDScript",
-"path": "res://scene/MainMenu/Menu.gd"
+"path": "res://scene/main_menu/Menu.gd"
+}, {
+"base": "Control",
+"class": "OptionsScene",
+"language": "GDScript",
+"path": "res://scene/options/Options.gd"
+}, {
+"base": "RigidBody2D",
+"class": "PLAYER",
+"language": "GDScript",
+"path": "res://scene/spaceship/spaceship.gd"
+}, {
+"base": "Node2D",
+"class": "SceneHandler",
+"language": "GDScript",
+"path": "res://scene/levels/SceneHandler.gd"
 } ]
 _global_script_class_icons={
-"MainMenu": ""
+"GameOverScene": "",
+"MainMenu": "",
+"OptionsScene": "",
+"PLAYER": "",
+"SceneHandler": ""
 }
 
 [application]
 
 config/name="asteroid_remake"
-run/main_scene="res://scene/Levels/SceneHandler.tscn"
+run/main_scene="res://scene/levels/SceneHandler.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -1,20 +1,20 @@
 extends Node2D
 
 var game_settings
-var configFile = "game_settings.json"
+var configFile = "game_settings"
 
 func _ready():
-	game_settings = loadJSONConfigFile()
+	game_settings = loadConfigFile()
 
-func loadJSONConfigFile():
+func loadConfigFile():
 	var file = File.new()
 	file.open(configFile, File.READ)
-	var configInfo = parse_json(file.get_as_text())
+	var configInfo = str2var(file.get_as_text())
 	file.close()
 	return configInfo
 
-func saveJSONConfig():
+func saveConfig():
 	var file = File.new()
-	file.open(configFile, File.WRITE_READ)
-	file.store_line(to_json(game_settings))
+	file.open(configFile, File.WRITE)
+	file.store_string(var2str(game_settings))
 	file.close()
