@@ -1,6 +1,6 @@
-extends "res://scene/CustomRigidBody2D.gd"
-
 class_name PLAYER
+
+extends "res://scene/CustomRigidBody2D.gd"
 
 signal player_exploded
 

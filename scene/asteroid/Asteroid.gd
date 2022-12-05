@@ -5,7 +5,8 @@ extends "res://scene/CustomRigidBody2D.gd"
 export(int) var number_of_pieces = 3
 export(int) var explode_force = 3
 var explosion_speeds = [100, 200, 300,]
-
+export(float) var initial_velocity = 100.0
+var initial_direction
 
 
 enum Size {
@@ -19,13 +20,30 @@ var AsteroidTypes = {
 }
 var collider
 var explosionPlayer
+var directions = [
+	Vector2(-1.0,0.0), 
+	Vector2(-1.0,1.0), 
+	Vector2(0,1.0),
+	Vector2(1.0,1.0), 
+	Vector2(1,0), 
+	Vector2(1,-1),
+	Vector2(0,-1),
+	Vector2(-1,-1)
+	]
 
 func _ready() -> void:	
+	randomize()
 	radius = sprite.texture.get_width() / 2 * sprite.scale
 	collider = get_children()[1]
 	explosionPlayer = get_children()[2]
 	explosionPlayer.volume_db = GameHandler.game_settings.game.sfxVol
 	explosionPlayer.connect("finished", self, "_on_explosionPlayer_finished")
+	initial_direction = _get_initial_directions()
+	apply_impulse(Vector2(),initial_direction *  initial_velocity)
+
+
+func _get_initial_directions():
+	return directions[randi() % directions.size()]
 
 func _explode():
 	explosionPlayer.play()
