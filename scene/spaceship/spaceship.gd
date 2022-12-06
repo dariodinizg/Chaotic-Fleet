@@ -31,7 +31,8 @@ func check_input_shoot():
 		var bullet = pre_bullet.instance()
 		bullet.position = $CannonPosition.global_position
 		bullet.rotation = self.rotation
-		$CannonSound.play()
+		if GameHandler.game_settings.game.is_sfx_on == true:
+			$CannonSound.play()
 		get_parent().add_child(bullet)
 
 
