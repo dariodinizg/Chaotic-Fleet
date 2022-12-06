@@ -3,8 +3,8 @@ extends "res://scene/CustomRigidBody2D.gd"
 #signal explode
 
 export(int) var number_of_pieces = 3
-export(int) var explode_force = 3
-var explosion_speeds = [100, 200, 300,]
+export(int) var explode_force = 2
+var explosion_speeds = [100, 150]
 export(float) var initial_velocity = 100.0
 var initial_direction
 
@@ -46,7 +46,8 @@ func _get_initial_directions():
 	return directions[randi() % directions.size()]
 
 func _explode():
-	explosionPlayer.play()
+	if GameHandler.game_settings.game.is_sfx_on == true:
+		explosionPlayer.play()
 	sprite.queue_free()
 	collider.queue_free()
 	randomize()
@@ -60,7 +61,7 @@ func _explode():
 			var offset_dir = PI * 2 / number_of_pieces * i
 			var asteroid = lesser_asteroid.instance()
 			asteroid.position = position + radius.rotated(offset_dir)
-			asteroid.linear_velocity = linear_velocity + Vector2(explosion_speed,0).rotated(offset_dir)
+#			asteroid.linear_velocity = linear_velocity + Vector2(explosion_speed,0).rotated(offset_dir)
 			get_parent().call_deferred("add_child", asteroid)
 	sleeping = true # prevents the object from interact while not free
 	

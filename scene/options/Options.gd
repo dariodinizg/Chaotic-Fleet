@@ -101,6 +101,8 @@ func _on_SFXVolumeSlider_value_changed(value):
 
 
 func _on_SFXVolSlider_drag_started():
+	if GameHandler.game_settings.game.is_sfx_on == false:
+		GameHandler.game_settings.game.is_sfx_on = true
 	$MenuMusic.stream_paused = true
 	is_sfx_vol_changed = true
 	SfxLoopTimer.wait_time = 1
@@ -109,6 +111,8 @@ func _on_SFXVolSlider_drag_started():
 
 func _on_SFXVolSlider_drag_ended(value_changed):
 	game_settings.game.sfxVol = SfxVolBar.value
+	if SfxVolBar.value <=-35:
+		GameHandler.game_settings.game.is_sfx_on = false
 	SfxLoopTimer.stop()
 	$Sfx.stop()
 	$MenuMusic.stream_paused = false

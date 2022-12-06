@@ -16,17 +16,17 @@ position = Vector2( 499, 316 )
 texture = ExtResource( 5 )
 
 [node name="Spaceship" parent="." instance=ExtResource( 4 )]
-position = Vector2( 351.489, 270.125 )
+position = Vector2( 224, 186 )
 rotation = 2.09439
 
 [node name="AsteroidMedium" parent="." instance=ExtResource( 2 )]
-position = Vector2( 541, 274 )
+position = Vector2( 744, 317 )
 
 [node name="AsteroidSmall" parent="." instance=ExtResource( 3 )]
-position = Vector2( 456, 195 )
+position = Vector2( 653, 126 )
 
 [node name="AsteroidLarge" parent="." instance=ExtResource( 1 )]
-position = Vector2( 252, 414 )
+position = Vector2( 528, 478 )
 number_of_pieces = 4
 
 [node name="Music" type="AudioStreamPlayer" parent="."]

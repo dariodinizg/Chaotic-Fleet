@@ -3,6 +3,21 @@ extends Node2D
 var game_settings
 var configFile = "game_settings"
 
+var start_config = {
+	"game": {
+		"bgMusic": 6.5,
+		"sfxVol": -14,
+		"is_sfx_on": true,
+		"is_game_music_on": true,
+	},
+	"menu": {
+		"currentSongPosition": 1.2829,
+		"is_musicOn": 1,
+		"musicVol": -3.5
+	}
+}
+
+
 func _ready():
 	game_settings = loadConfigFile()
 
