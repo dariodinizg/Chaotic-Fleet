@@ -20,7 +20,11 @@ var start_config = {
 
 func _ready():
 	game_settings = loadConfigFile()
-
+	if typeof(game_settings) != TYPE_DICTIONARY:
+		pass
+		game_settings = start_config
+		print("Config file is missing. Config file created based on factory settings")
+	
 func loadConfigFile():
 	var file = File.new()
 	file.open(configFile, File.READ)

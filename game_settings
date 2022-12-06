@@ -1,6 +1,8 @@
 {
 "game": {
 "bgMusic": 6.5,
+"is_game_music_on": true,
+"is_sfx_on": true,
 "sfxVol": -14
 },
 "menu": {
