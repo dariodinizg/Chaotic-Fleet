@@ -24,15 +24,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/options/Options.gd"
 }, {
-"base": "RigidBody2D",
+"base": "Reference",
 "class": "PLAYER",
 "language": "GDScript",
-"path": "res://scene/spaceship/spaceship.gd"
+"path": "res://scene/player_ship/player_ship.gd"
 }, {
 "base": "Node2D",
 "class": "SceneHandler",
 "language": "GDScript",
-"path": "res://scene/levels/SceneHandler.gd"
+"path": "res://scene/scene_handler/SceneHandler.gd"
 } ]
 _global_script_class_icons={
 "GameOverScene": "",
@@ -44,8 +44,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="asteroid_remake"
-run/main_scene="res://scene/levels/SceneHandler.tscn"
+config/name="old_chaotic_fleet"
+run/main_scene="res://scene/scene_handler/SceneHandler.tscn"
 config/icon="res://icon.png"
 
 [autoload]
