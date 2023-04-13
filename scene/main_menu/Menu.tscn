@@ -127,7 +127,4 @@ texture_normal = ExtResource( 8 )
 texture_pressed = ExtResource( 9 )
 expand = true
 
-[connection signal="pressed" from="CanvaMenu/VBoxContainer/solo_game_btn" to="." method="_on_solo_game_btn_pressed"]
-[connection signal="pressed" from="CanvaMenu/VBoxContainer/options_btn" to="." method="_on_options_btn_pressed"]
-[connection signal="pressed" from="CanvaMenu/VBoxContainer/exit_btn" to="." method="_on_exit_btn_pressed"]
 [connection signal="pressed" from="CanvaMenu/muteBtn" to="." method="_on_muteBtn_pressed"]
