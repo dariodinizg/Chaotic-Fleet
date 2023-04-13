@@ -13,6 +13,7 @@ var MenuMusicVolBar
 var SfxVolBar
 var SfxLoopTimer
 var GameVolBar
+var BackBtn
 
 var current_song_position
 var is_game_music_vol_changed = false
@@ -22,26 +23,23 @@ var is_sfx_vol_changed = false
 signal OPTIONS_back_btn_pressed
 
 func _ready():
-#	[MenuMusicVolBar, SfxVolBar, GameVolBar] = _initialize_components()
+	Handler = get_tree().get_root().get_node(HANDLER_NAME)
 	_initialize_components()
 	_load_startup_settings()
-	Handler = _connect_itself(HANDLER_NAME)
+	_connect_itself()
 
 
-func _connect_itself(handler_name):
-	# Searches the tree for the handler node name and connects its signals.
-	# Returns its handler node.
-	
-	var handler_node = get_tree().get_root().get_node(handler_name)
-	# warning-ignore:return_value_discarded
-	self.connect("OPTIONS_back_btn_pressed", handler_node, "on_OptionsScene_back_btn_pressed")
-	return handler_node
+func _connect_itself():
+	BackBtn.connect("pressed", self, "_on_back_btn_pressed")
+
 
 func _initialize_components():
 	MenuMusicVolBar = $MarginContainer/VBoxContainer/MenuMusicSlider/MenuMusicVolSlider
 	SfxVolBar = $MarginContainer/VBoxContainer/SoundEffects/SFXVolSlider
 	SfxLoopTimer = $MarginContainer/VBoxContainer/SoundEffects/SfxLoopTimer
 	GameVolBar = $MarginContainer/VBoxContainer/GameMusic/GameMusicVolSlider
+	BackBtn = $MarginContainer/BtnsBar/back_btn
+	
 #	return [MenuMusicVolBar, SfxVolBar, GameVolBar]
 
 func _load_startup_settings():
@@ -61,7 +59,7 @@ func disconnect_itself():
 
 func _on_back_btn_pressed():
 	disconnect_itself()
-	emit_signal("OPTIONS_back_btn_pressed")
+	Handler._plug_scene(Handler.PLUGGED_SCENES.menu)
 
 
 func _on_popup_no_btn_pressed():

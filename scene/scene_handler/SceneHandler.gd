@@ -1,8 +1,12 @@
 class_name SceneHandler
-
 extends Node2D
 
+# This node is responsible for transitioning scenes and keep game states like ON_MENU, ON_GAME.
+
+
 const PLUGGED_SCENES = {
+	# Plug each scene of the game this handler is responsible for
+	
 	menu = preload("res://scene/main_menu/Menu.tscn"),
 	options = preload("res://scene/options/Options.tscn"),
 	game_over = preload("res://scene/game_over/game_over.tscn"),
@@ -10,6 +14,8 @@ const PLUGGED_SCENES = {
 		1 : preload("res://scene/levels/Level1.tscn")
 	},
 }
+
+enum { ON_GAME, ON_MAINMENU, ON_OPTIONS } # A ser implementado
 
 var current_plugged_scene
 var previous_plugged_scene
@@ -25,51 +31,39 @@ func _on_gameover_no_btn_pressed():
 	_plug_scene(PLUGGED_SCENES.menu)
 
 
-func _free_current_plugged_scene():
-	if $MarginContainer.get_children().size() != 0:
-		if previous_plugged_scene != current_plugged_scene:
-			previous_plugged_scene = current_plugged_scene
+func _free_current_plugged_scene(_current_plugged_scene):
+	if has_previous_scene():
+		previous_plugged_scene = _check_previous_plugged_scene(_current_plugged_scene)
 		_get_current_plugged_scene().disconnect_itself()
 		return $MarginContainer.get_children()[0].queue_free()
-	return
+
+
+func _check_previous_plugged_scene(_current_plugged_scene):
+	if previous_plugged_scene != current_plugged_scene:
+		return current_plugged_scene
 
 
 func _get_current_plugged_scene():
 	return $MarginContainer.get_children()[0]
 
 
-func _plug_scene(preloaded_scene):
-	current_plugged_scene = preloaded_scene
-	_free_current_plugged_scene()
-	var scene_instance = preloaded_scene.instance()
+func has_previous_scene():
+	if $MarginContainer.get_children().size() != 0:
+		return true
+	return false
+
+
+func _plug_scene(_preloaded_scene):
+	current_plugged_scene = _preloaded_scene
+	_free_current_plugged_scene(current_plugged_scene)
+	var scene_instance = _preloaded_scene.instance()
 	$MarginContainer.add_child(scene_instance)
 
 
-#MENU SCENE SIGNALS
-func _on_MenuScene_solo_game_btn_pressed():
-# warning-ignore:return_value_discarded
-#	get_tree().change_scene(levels[1])
-	_plug_scene(PLUGGED_SCENES.levels[1])
 
-
-func _on_MenuScene_game_exit_btn_pressed():
-	get_tree().quit()
-
-
-func _on_MenuScene_game_options_btn_pressed():
-	_plug_scene(PLUGGED_SCENES.options)
-
-
-#OPTIONS SCENE SIGNALS
-func on_OptionsScene_back_btn_pressed():
-	_plug_scene(PLUGGED_SCENES.menu)
-
-
-#GAME OVER SCENE SIGNALS
-func _on_gameover_yes_btn_pressed():
-	_free_current_plugged_scene()
-	_plug_scene(current_plugged_scene)
-
-
+#func _check_config_keys():
+#	if Input.is_action_just_pressed("ui_cancel"):
+#		if current_state == ON_GAME:
+#			_plug_scene(PLUGGED_SCENES.options)
 
 

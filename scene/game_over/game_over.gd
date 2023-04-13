@@ -5,29 +5,33 @@ extends Popup
 const HANDLER_NAME = "SceneHandler"
 
 var Handler
-var gameover_yes_btn
-var gameover_no_btn
+var GameOverYesBtn
+var GameOverNoBtn
+var counter :=0
 
 func _ready():
 #	gameover_yes_btn, gameover_no_btn = _initialize_components()
 	_initialize_components()
-	Handler = connect_itself(HANDLER_NAME)
+	Handler = get_tree().get_root().get_node(HANDLER_NAME)
+	connect_itself()
 
 
-func connect_itself(handler_name):
-	var handler_node = get_tree().get_root().get_node(handler_name)
-	gameover_yes_btn.connect("pressed", handler_node, "_on_gameover_yes_btn_pressed")
-	gameover_no_btn.connect("pressed", handler_node, "_on_gameover_no_btn_pressed")
-	return handler_node
+func connect_itself():
+	GameOverYesBtn.connect("pressed", self, "_on_gameover_yes_btn_pressed")
+	GameOverNoBtn.connect("pressed", self, "_on_gameover_no_btn_pressed")
+	
 	
 func disconnect_itself():
 	pass
+	
+	
+func _on_gameover_yes_btn_pressed():
+	Handler._plug_scene(Handler.current_plugged_scene)
 
+func _on_gameover_no_btn_pressed():
+	Handler._plug_scene(Handler.PLUGGED_SCENES.menu)
 
 func _initialize_components():
-	gameover_yes_btn = $MarginContainer/VBoxContainer/HBoxContainer/popup_yes_btn
-	gameover_no_btn = $MarginContainer/VBoxContainer/HBoxContainer/popup_no_btn
-#	return [yes_btn, no_btn]
+	GameOverYesBtn = $MarginContainer/VBoxContainer/HBoxContainer/popup_yes_btn
+	GameOverNoBtn = $MarginContainer/VBoxContainer/HBoxContainer/popup_no_btn
 	
-func _connect_btn(btn):
-	pass
