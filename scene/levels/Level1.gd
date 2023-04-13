@@ -1,4 +1,8 @@
 extends Node
+class_name LevelHandler
+
+
+#Talvez transformar este script em um LevelHandler com os diversos nodes extendendo este escript
 
 signal level_exited
 
@@ -35,6 +39,10 @@ func on_gameover_yes_btn_pressed():
 func on_gameover_no_btn_pressed():
 	emit_signal("level_exited")
 
+func _end_game():
+	var game_over_popup = GameOverScene.instance()
+	add_child(game_over_popup)
+	game_over_popup.visible = true
 
 
 
