@@ -10,12 +10,12 @@ const PLUGGED_SCENES = {
 	menu = preload("res://scene/main_menu/Menu.tscn"),
 	options = preload("res://scene/options/Options.tscn"),
 	game_over = preload("res://scene/game_over/game_over.tscn"),
-	levels = {
-		1 : preload("res://scene/levels/Level1.tscn")
-	},
+	pause_menu = preload("res://scene/pause_menu/pause_menu.tscn"),
+	level_handler = preload("res://scene/levels/Level1.tscn"),
 }
 
-enum { ON_GAME, ON_MAINMENU, ON_OPTIONS } # A ser implementado
+enum { ON_GAME, ON_MAINMENU, ON_OPTIONS, ON_PAUSEMENU } # A ser implementado
+var current_state
 
 var current_plugged_scene
 var previous_plugged_scene
@@ -55,11 +55,22 @@ func has_previous_scene():
 
 func _plug_scene(_preloaded_scene):
 	current_plugged_scene = _preloaded_scene
+	match current_plugged_scene:
+		PLUGGED_SCENES.menu:
+			current_state = ON_MAINMENU
+		PLUGGED_SCENES.pause_menu:
+			current_state = ON_PAUSEMENU
+		PLUGGED_SCENES.level_handler:
+			current_state = ON_GAME
+	print(current_state)
 	_free_current_plugged_scene(current_plugged_scene)
 	var scene_instance = _preloaded_scene.instance()
 	$MarginContainer.add_child(scene_instance)
 
 
+func _quit_game():
+	GameHandler.saveConfig()
+	get_tree().quit()
 
 #func _check_config_keys():
 #	if Input.is_action_just_pressed("ui_cancel"):
