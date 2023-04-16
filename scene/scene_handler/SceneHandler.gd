@@ -11,7 +11,7 @@ const PLUGGED_SCENES = {
 	options = preload("res://scene/options/Options.tscn"),
 	game_over = preload("res://scene/game_over/game_over.tscn"),
 	pause_menu = preload("res://scene/pause_menu/pause_menu.tscn"),
-	level_handler = preload("res://scene/levels/Level1.tscn"),
+	level_handler = preload("res://scene/level_handler/LevelHandler.tscn"),
 }
 
 enum { ON_GAME, ON_MAINMENU, ON_OPTIONS, ON_PAUSEMENU } # A ser implementado

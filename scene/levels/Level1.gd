@@ -1,5 +1,4 @@
 extends Node
-class_name LevelHandler
 
 
 #Talvez transformar este script em um LevelHandler com os diversos nodes extendendo este escript

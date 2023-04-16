@@ -14,10 +14,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/game_over/game_over.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "LevelHandler",
 "language": "GDScript",
-"path": "res://scene/levels/Level1.gd"
+"path": "res://scene/level_handler/LevelHandler.gd"
 }, {
 "base": "Control",
 "class": "MainMenu",
