@@ -50,7 +50,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="old_chaotic_fleet"
+config/name="Chaotic_fleet"
 run/main_scene="res://scene/scene_handler/SceneHandler.tscn"
 config/icon="res://icon.png"
 
