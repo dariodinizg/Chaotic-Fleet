@@ -41,8 +41,7 @@ func _on_solo_game_btn_pressed():
 	emit_signal("solo_game_btn_pressed")
 
 func _on_exit_btn_pressed():
-	GameHandler.saveConfig()
-	get_tree().quit()
+	Handler._quit_game()
 	
 func _on_options_btn_pressed():
 	Handler._plug_scene(Handler.PLUGGED_SCENES.options)

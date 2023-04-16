@@ -60,6 +60,9 @@ func _plug_scene(_preloaded_scene):
 	$MarginContainer.add_child(scene_instance)
 
 
+func _quit_game():
+	GameHandler.saveConfig()
+	get_tree().quit()
 
 #func _check_config_keys():
 #	if Input.is_action_just_pressed("ui_cancel"):

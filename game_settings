@@ -1,13 +1,13 @@
 {
 "game": {
-"bgMusic": -3.5,
+"bgMusic": -0.5,
 "is_game_music_on": true,
 "is_sfx_on": true,
 "sfxVol": -24.0
 },
 "menu": {
-"currentSongPosition": 1.25968,
+"currentSongPosition": 2.04916,
 "is_musicOn": 1,
-"musicVol": -9.0
+"musicVol": 0.0
 }
 }
