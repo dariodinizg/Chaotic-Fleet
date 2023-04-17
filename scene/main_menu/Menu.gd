@@ -58,7 +58,6 @@ func _on_muteBtn_pressed():
 		game_settings.menu.is_musicOn = 0
 		$CanvaMenu/music.stream_paused =  true
 	else:
-		print("else condition")
 		game_settings.menu.is_musicOn = 1
 		change_musicPlayer_state()
 
