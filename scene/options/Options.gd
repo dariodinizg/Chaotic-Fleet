@@ -59,13 +59,14 @@ func disconnect_itself():
 
 func _on_back_btn_pressed():
 	disconnect_itself()
-	Handler._plug_scene(Handler.PLUGGED_SCENES.menu)
+	Handler._plug_scene("menu")
 
 
 func _on_popup_no_btn_pressed():
 	emit_signal("OPTIONS_back_btn_pressed")
 
 
+# warning-ignore:unused_argument
 func _on_MenuMusicVolSlider_value_changed(value):
 #	if is_game_music_vol_changed:
 	if MenuMusicVolBar.value > -20.0:
@@ -86,12 +87,14 @@ func _on_MenuMusicVolSlider_drag_started():
 		$MenuMusic.volume_db = MenuMusicVolBar.value
 
 
+# warning-ignore:unused_argument
 func _on_MenuMusicVolSlider_drag_ended(value_changed):
 	game_settings.menu.musicVol = MenuMusicVolBar.value
 	if $MenuMusic.playing == false:
 		game_settings.menu.is_musicOn = 0
 
 
+# warning-ignore:unused_argument
 func _on_SFXVolumeSlider_value_changed(value):
 	if SfxVolBar.value >= -35:
 		if is_sfx_vol_changed:
@@ -107,6 +110,7 @@ func _on_SFXVolSlider_drag_started():
 	SfxLoopTimer.start()
 
 
+# warning-ignore:unused_argument
 func _on_SFXVolSlider_drag_ended(value_changed):
 	game_settings.game.sfxVol = SfxVolBar.value
 	if SfxVolBar.value <=-35:
@@ -120,6 +124,7 @@ func _on_SfxLoopTimer_timeout():
 	$Sfx.play()
 
 
+# warning-ignore:unused_argument
 func _on_GameMusicVolSlider_value_changed(value):
 	if GameVolBar.value >= -18:
 		$GameMusic.volume_db = GameVolBar.value - 4.0
@@ -132,6 +137,7 @@ func _on_GameMusicVolSlider_drag_started():
 	$GameMusic.play()
 
 
+# warning-ignore:unused_argument
 func _on_GameMusicVolSlider_drag_ended(value_changed):
 	$GameMusic.stop()
 	$MenuMusic.stream_paused = false

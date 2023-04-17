@@ -5,7 +5,7 @@ extends Node
 
 signal level_exited
 
-const HANDLER_NAME = "SceneHandler"
+const HANDLER_NAME = "LevelHandler"
 var handler_node
 
 var GameOverScene = preload("res://scene/game_over/game_over.tscn")
@@ -26,8 +26,9 @@ func on_player_exploded():
 	game_over_popup.visible = true
 
 func _connect_itself(handler_name):
-	handler_node = get_tree().get_root().get_node(handler_name)
-	self.connect("level_exited", handler_node, "_on_level_exited")
+#	handler_node = get_tree().get_root().get_node(handler_name)
+#	self.connect("level_exited", handler_node, "_on_level_exited")
+	pass
 
 func disconnect_itself():
 	pass
