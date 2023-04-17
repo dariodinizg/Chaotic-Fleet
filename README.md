@@ -1,2 +1,2 @@
 # asteroid_clone
-WIP: My version of a old asteroid game I used to play and love.
+WIP: My version of an old asteroid game I used to play and love.
