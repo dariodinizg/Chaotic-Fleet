@@ -36,7 +36,7 @@ func _ready() -> void:
 	radius = sprite.texture.get_width() / 2 * sprite.scale
 	collider = get_children()[1]
 	explosionPlayer = get_children()[2]
-	explosionPlayer.volume_db = GameHandler.game_settings.game.sfxVol
+	explosionPlayer.volume_db = ConfigHandler.game_settings.game.sfxVol
 	explosionPlayer.connect("finished", self, "_on_explosionPlayer_finished")
 	initial_direction = _get_initial_directions()
 	apply_impulse(Vector2(),initial_direction *  initial_velocity)
@@ -46,7 +46,7 @@ func _get_initial_directions():
 	return directions[randi() % directions.size()]
 
 func _explode():
-	if GameHandler.game_settings.game.is_sfx_on == true:
+	if ConfigHandler.game_settings.game.is_sfx_on == true:
 		explosionPlayer.play()
 	sprite.queue_free()
 	collider.queue_free()
