@@ -51,7 +51,7 @@ func _set_state(state):
 
 
 func _ready():
-	$CannonSound.volume_db = GameHandler.game_settings.game.sfxVol - 3.0
+	$CannonSound.volume_db = ConfigHandler.game_settings.game.sfxVol - 3.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -91,6 +91,6 @@ func _check_input_shoot():
 		var bullet = pre_bullet.instance()
 		bullet.position = $CannonPosition.global_position
 		bullet.rotation = self.rotation
-		if GameHandler.game_settings.game.is_sfx_on == true:
+		if ConfigHandler.game_settings.game.is_sfx_on == true:
 			$CannonSound.play()
 		get_parent().add_child(bullet)

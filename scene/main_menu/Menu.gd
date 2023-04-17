@@ -7,7 +7,7 @@ const HANDLER_NAME = "SceneHandler"
 var Handler
 var is_musicOn = true
 var currentSongPosition : float
-var game_settings = GameHandler.game_settings
+var game_settings = ConfigHandler.game_settings
 
 
 func _ready():
@@ -56,11 +56,17 @@ func _on_muteBtn_pressed():
 	if game_settings.menu.is_musicOn:
 		game_settings.menu.currentSongPosition = $CanvaMenu/music.get_playback_position()
 		game_settings.menu.is_musicOn = 0
-		$CanvaMenu/music.stop()
+		$CanvaMenu/music.stream_paused =  true
+	else:
+		game_settings.menu.is_musicOn = 1
+		change_musicPlayer_state()
+
+func change_musicPlayer_state():
+	if $CanvaMenu/music.stream_paused == true:
+		$CanvaMenu/music.stream_paused =  false
 	else:
 		$CanvaMenu/music.play()
-		game_settings.menu.is_musicOn = 1
-
+	
 
 
 

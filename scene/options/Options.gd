@@ -6,7 +6,7 @@ extends Control
 const HANDLER_NAME = "SceneHandler"
 
 # Singleton with game settings
-var game_settings = GameHandler.game_settings
+var game_settings = ConfigHandler.game_settings
 
 var Handler
 var MenuMusicVolBar
@@ -47,17 +47,18 @@ func _load_startup_settings():
 	if game_settings.menu.is_musicOn == 1:
 		$MenuMusic.volume_db = game_settings.menu.musicVol
 		$MenuMusic.play(current_song_position)
-	MenuMusicVolBar.value = game_settings.menu.musicVol
-	SfxVolBar.value = game_settings.game.sfxVol
-	GameVolBar.value = game_settings.game.bgMusic
+		MenuMusicVolBar.value = game_settings.menu.musicVol
+		SfxVolBar.value = game_settings.game.sfxVol
+		GameVolBar.value = game_settings.game.bgMusic
 		
 
 func disconnect_itself():
 	game_settings.menu.currentSongPosition = $MenuMusic.get_playback_position()
-	GameHandler.saveConfig()
+	ConfigHandler.saveConfig()
 
 
 func _on_back_btn_pressed():
+	ConfigHandler.saveConfig()
 	disconnect_itself()
 	Handler._plug_scene("menu")
 
@@ -102,8 +103,8 @@ func _on_SFXVolumeSlider_value_changed(value):
 
 
 func _on_SFXVolSlider_drag_started():
-	if GameHandler.game_settings.game.is_sfx_on == false:
-		GameHandler.game_settings.game.is_sfx_on = true
+	if ConfigHandler.game_settings.game.is_sfx_on == false:
+		ConfigHandler.game_settings.game.is_sfx_on = true
 	$MenuMusic.stream_paused = true
 	is_sfx_vol_changed = true
 	SfxLoopTimer.wait_time = 1
@@ -114,7 +115,7 @@ func _on_SFXVolSlider_drag_started():
 func _on_SFXVolSlider_drag_ended(value_changed):
 	game_settings.game.sfxVol = SfxVolBar.value
 	if SfxVolBar.value <=-35:
-		GameHandler.game_settings.game.is_sfx_on = false
+		ConfigHandler.game_settings.game.is_sfx_on = false
 	SfxLoopTimer.stop()
 	$Sfx.stop()
 	$MenuMusic.stream_paused = false

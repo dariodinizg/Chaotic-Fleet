@@ -73,7 +73,7 @@ func _plug_scene(scene_name):
 
 
 func _quit_game():
-	GameHandler.saveConfig()
+	ConfigHandler.saveConfig()
 	get_tree().quit()
 
 
