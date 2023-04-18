@@ -13,10 +13,10 @@ func _ready():
 #	gameover_yes_btn, gameover_no_btn = _initialize_components()
 	_initialize_components()
 	Handler = get_tree().get_root().get_node(HANDLER_NAME)
-	connect_itself()
+	_connect_itself()
 
 
-func connect_itself():
+func _connect_itself():
 	GameOverYesBtn.connect("pressed", self, "_on_gameover_yes_btn_pressed")
 	GameOverNoBtn.connect("pressed", self, "_on_gameover_no_btn_pressed")
 	
@@ -26,10 +26,10 @@ func disconnect_itself():
 	
 	
 func _on_gameover_yes_btn_pressed():
-	Handler._plug_scene(Handler.current_plugged_scene)
+	Handler._plug_scene("level_handler")
 
 func _on_gameover_no_btn_pressed():
-	Handler._plug_scene(Handler.PLUGGED_SCENES.menu)
+	Handler._plug_scene("menu")
 
 func _initialize_components():
 	GameOverYesBtn = $MarginContainer/VBoxContainer/HBoxContainer/popup_yes_btn
