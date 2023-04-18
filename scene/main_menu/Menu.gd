@@ -12,7 +12,7 @@ var game_settings = ConfigHandler.game_settings
 
 func _ready():
 	Handler = get_tree().get_root().get_node(HANDLER_NAME)
-	connect_itself()
+	_connect_itself()
 	$CanvaMenu/music.volume_db = game_settings.menu.musicVol
 	if game_settings.menu.is_musicOn:
 		if Handler.is_game_booting:
@@ -29,7 +29,7 @@ func disconnect_itself():
 	game_settings.menu.currentSongPosition = $CanvaMenu/music.get_playback_position()
 
 
-func connect_itself():
+func _connect_itself():
 	# BTNs
 # warning-ignore:return_value_discarded
 	$CanvaMenu/VBoxContainer/options_btn.connect("pressed", self, "_on_options_btn_pressed")
