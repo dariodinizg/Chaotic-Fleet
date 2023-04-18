@@ -17,7 +17,7 @@ func _connect_itself():
 	$VBoxContainer/Options.connect("pressed", self, "_on_options_btn_pressed")
 	$VBoxContainer/Quit.connect("pressed", self, "_on_quit_btn_pressed")
 	
-func __disconnect_itself():
+func _disconnect_itself():
 	pass
 	
 #func _initialize_components():
