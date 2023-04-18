@@ -30,7 +30,7 @@ func _connect_itself(handler_name):
 #	self.connect("level_exited", handler_node, "_on_level_exited")
 	pass
 
-func disconnect_itself():
+func _disconnect_itself():
 	pass
 
 func on_gameover_yes_btn_pressed():

@@ -79,14 +79,14 @@ func _set_level(level_number):
 		is_level_starting = false
 	return level_number
 	
-func disconnect_itself():
+func _disconnect_itself():
 	pass
 
 
 func _free_current_plugged_level(_current_plugged_level):
 	if has_previous_scene():
 		previous_level = _check_previous_plugged_level(_current_plugged_level)
-		_get_current_plugged_scene().disconnect_itself()
+		_get_current_plugged_scene()._disconnect_itself()
 		return $LevelContainer.get_children()[0].queue_free()
 
 

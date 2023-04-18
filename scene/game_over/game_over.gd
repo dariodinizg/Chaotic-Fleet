@@ -21,7 +21,7 @@ func _connect_itself():
 	GameOverNoBtn.connect("pressed", self, "_on_gameover_no_btn_pressed")
 	
 	
-func disconnect_itself():
+func _disconnect_itself():
 	pass
 	
 	

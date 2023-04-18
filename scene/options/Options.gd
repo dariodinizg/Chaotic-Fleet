@@ -52,14 +52,14 @@ func _load_startup_settings():
 		GameVolBar.value = game_settings.game.bgMusic
 		
 
-func disconnect_itself():
+func _disconnect_itself():
 	game_settings.menu.currentSongPosition = $MenuMusic.get_playback_position()
 	ConfigHandler.saveConfig()
 
 
 func _on_back_btn_pressed():
 	ConfigHandler.saveConfig()
-	disconnect_itself()
+	_disconnect_itself()
 	Handler._plug_scene("menu")
 
 

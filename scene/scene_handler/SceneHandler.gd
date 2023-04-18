@@ -35,7 +35,7 @@ func _on_gameover_no_btn_pressed():
 func _free_current_plugged_scene(_current_plugged_scene):
 	if has_previous_scene():
 		previous_plugged_scene = _check_previous_plugged_scene(_current_plugged_scene)
-		_get_current_plugged_scene().disconnect_itself()
+		_get_current_plugged_scene()._disconnect_itself()
 		return $SceneContainer.get_children()[0].queue_free()
 
 
