@@ -25,7 +25,7 @@ func _ready():
 	else:
 		$CanvaMenu/muteBtn.pressed = true
 
-func disconnect_itself():
+func _disconnect_itself():
 	game_settings.menu.currentSongPosition = $CanvaMenu/music.get_playback_position()
 
 
