@@ -19,36 +19,39 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
 [node name="Spaceship" type="RigidBody2D"]
-position = Vector2( 357.895, 255.956 )
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 script = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitBoxArea" type="Area2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2( 1.59317, 0.255905 )
+[node name="hitbox_shape" type="CollisionPolygon2D" parent="HitBoxArea"]
+position = Vector2( 1.78814e-07, 2 )
 rotation = 1.57079
 scale = Vector2( 1.1398, 1.17841 )
-polygon = PoolVector2Array( 3.14334, -22.3799, 8.36292, -14.8846, 23.1354, 8.80022, 26.539, 17.543, 14.9556, 18.323, 15.1998, 21.7414, 4.33407, 21.8635, 3.32336, 18.2349, -1.94072, 18.2349, -3.60155, 22.1077, -14.7114, 21.7414, -14.5893, 18.2009, -24.7225, 18.323, -24.7225, 11.364, -6.94469, -15.0821, -3.69514, -22.4981 )
+polygon = PoolVector2Array( 0.877411, -11.8804, 18.4242, 15.2749, -21.0564, 15.2747, -4.38666, -11.8805 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -3, -4.76837e-07 )
 rotation = 1.5708
+scale = Vector2( 0.810201, 0.810201 )
 texture = ExtResource( 3 )
 
 [node name="CannonPosition" type="Position2D" parent="."]
-position = Vector2( 28, 0 )
+position = Vector2( 29, 0 )
 
 [node name="CannonSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
-rotation = 1.5708
-polygon = PoolVector2Array( 3.14334, -22.3799, 8.36292, -14.8846, 11.085, -3.06236, 23.1354, 8.80022, 26.539, 17.543, 14.9556, 18.323, 15.1998, 21.7414, 4.33407, 21.8635, 4.57825, 18.5671, -3.60155, 18.4451, -3.60155, 22.1077, -14.7114, 21.7414, -14.5893, 18.2009, -24.7225, 18.323, -24.7225, 11.364, -11.6667, -3.70628, -6.94468, -15.0821, -3.60155, -21.2331 )
+[node name="CollisionPolygon" type="CollisionPolygon2D" parent="."]
+position = Vector2( 1.78814e-07, 2 )
+rotation = 1.57079
+scale = Vector2( 1.1398, 1.17841 )
+polygon = PoolVector2Array( 0.877411, -11.8804, 18.4242, 15.2749, -21.0564, 15.2747, -4.38666, -11.8805 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 209.105, 21.044 )
+position = Vector2( -22, 8 )
 emitting = false
 process_material = SubResource( 2 )
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="HitBoxArea" to="." method="_on_HitBoxArea_body_entered"]

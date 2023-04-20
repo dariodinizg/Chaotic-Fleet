@@ -70,7 +70,7 @@ func check_collision(body):
 		current_state = _set_state(DEAD)
 
 
-func _on_Area2D_body_entered(body):
+func _on_HitBoxArea_body_entered(body):
 	check_collision(body)
 
 
